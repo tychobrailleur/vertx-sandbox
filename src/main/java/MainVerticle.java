@@ -10,6 +10,6 @@ public class MainVerticle extends Verticle {
                 Thread.currentThread() +
                 " - classloader: " +
                 this.getClass().getClassLoader());
-        container.deployWorkerVerticle("com.weblogism.vertxsandbox.ProcessorVerticle", config, 1);
+        container.deployWorkerVerticle("com.weblogism.vertxsandbox.ProcessorVerticle", config, 2);
     }
 }
