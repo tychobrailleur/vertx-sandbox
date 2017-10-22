@@ -1,0 +1,28 @@
+#+AUTHOR: Sébastien Le Callonnec
+#+TITLE: README
+
+Experimenting with worker verticles in Vert.x 2.1.4.
+
+* Starting server
+
+Compile the code using Maven:
+
+#+BEGIN_SRC
+mvn package
+#+END_SRC
+
+Once it's packaged, go into the =target/classes= folder, and run the
+following command (making sure Vert.x 2.1.4 is on the =PATH=):
+
+#+BEGIN_SRC bash
+vertx run MainVerticle -cluster
+#+END_SRC
+
+* Sending Message
+
+Making sure Vert.x 2.1.4 is on the =PATH=, the client can be executed
+as follow:
+
+#+BEGIN_SRC bash
+vertx run send_message.rb -cluster
+#+END_SRC
