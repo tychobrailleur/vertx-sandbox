@@ -26,3 +26,8 @@ as follow:
 #+BEGIN_SRC bash
 vertx run send_message.rb -cluster
 #+END_SRC
+
+
+* License
+
+(c) 2017 Sébastien Le Callonnec ‑ licensed under GPLv3.
