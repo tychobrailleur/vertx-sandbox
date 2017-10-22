@@ -18,6 +18,12 @@ following command (making sure Vert.x 2.1.4 is on the =PATH=):
 vertx run MainVerticle -cluster
 #+END_SRC
 
+** Change the worker thread pool size
+
+#+BEGIN_SRC bash
+export JAVA_OPTS="-Dvertx.pool.worker.size=2"
+#+END_SRC
+
 * Sending Message
 
 Making sure Vert.x 2.1.4 is on the =PATH=, the client can be executed

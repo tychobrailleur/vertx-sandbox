@@ -6,6 +6,10 @@ public class MainVerticle extends Verticle {
     public void start() {
         JsonObject config = new JsonObject();
         config.putBoolean("worker", true);
-        container.deployWorkerVerticle("com.weblogism.vertxsandbox.ProcessorVerticle", config, 2);
+        System.out.println("MainVerticle " + this + " - thread: " +
+                Thread.currentThread() +
+                " - classloader: " +
+                this.getClass().getClassLoader());
+        container.deployWorkerVerticle("com.weblogism.vertxsandbox.ProcessorVerticle", config, 1);
     }
 }
