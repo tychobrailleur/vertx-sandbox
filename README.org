@@ -1,7 +1,7 @@
 #+AUTHOR: Sébastien Le Callonnec
 #+TITLE: README
 
-Experimenting with worker verticles in Vert.x 2.1.4.
+Experimenting with worker verticles in Vert.x 2.1.5.
 
 * Starting server
 

@@ -14,5 +14,6 @@ public class MainVerticle extends Verticle {
         // By default workers are single-threaded, i.e. only one instance
         // can be executed at once by the worker pool.
         container.deployWorkerVerticle("com.weblogism.vertxsandbox.ProcessorVerticle", config, 1, true);
+        container.deployWorkerVerticle("com.weblogism.vertxsandbox.OtherProcessorVerticle", config, 1, true);
     }
 }
