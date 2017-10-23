@@ -21,8 +21,21 @@ vertx run MainVerticle -cluster
 ** Change the worker thread pool size
 
 #+BEGIN_SRC bash
-export JAVA_OPTS="-Dvertx.pool.worker.size=2"
+export JAVA_OPTS="-Dvertx.pool.worker.size=2 $JAVA_OPTS"
 #+END_SRC
+
+** Activate JMX
+
+This is an undocumented feature in Vert.x 2.x:
+
+#+BEGIN_SRC bash
+export JAVA_OPTS="-Dvertx.management.jmx=true $JAVA_OPTS"
+#+END_SRC
+
+This exposes:
+
+- Details about the thread pool (size, active threads),
+- Host and port of the event bus.
 
 * Sending Message
 
