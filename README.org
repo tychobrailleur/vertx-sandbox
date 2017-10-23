@@ -35,14 +35,18 @@ vertx run send_message.rb -cluster
 
 * Worker Verticle Behaviour
 
-An instance of a worker won't process any further worker until that
-instance has completed its work in the thread pool.  When a message
-comes in, an available worker instance is taken from the group of
-instances.
+By default, an instance of a worker won't process any further worker
+until that instance has completed its work in the thread pool.  When a
+message comes in, an available worker instance is taken from the group
+of instances.
 
-This means there cannot be more than _n_ instances running in
+This means there cannot be more than _n_ worker instances running in
 parallel, _n_ being the =vertx.pool.worker.size=.
+
+To ensure a worker can process multiple requests in parallel (i.e. by
+more than one thread at a time in the background pool), it has to be
+deployed with the =multi-threaded= flag set to =true=.
 
 * License
 
-(c) 2017 Sébastien Le Callonnec ‑ licensed under GPLv3.
+(c) 2017 Sébastien Le Callonnec — licensed under GPLv3.
