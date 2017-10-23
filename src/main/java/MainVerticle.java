@@ -7,9 +7,12 @@ public class MainVerticle extends Verticle {
         JsonObject config = new JsonObject();
         config.putBoolean("worker", true);
         System.out.println("MainVerticle " + this + " - thread: " +
-                Thread.currentThread() +
-                " - classloader: " +
-                this.getClass().getClassLoader());
-        container.deployWorkerVerticle("com.weblogism.vertxsandbox.ProcessorVerticle", config, 2);
+                           Thread.currentThread() +
+                           " - classloader: " +
+                           this.getClass().getClassLoader());
+
+        // By default workers are single-threaded, i.e. only one instance
+        // can be executed at once by the worker pool.
+        container.deployWorkerVerticle("com.weblogism.vertxsandbox.ProcessorVerticle", config, 1, true);
     }
 }
