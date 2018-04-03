@@ -1,0 +1,8 @@
+{
+  "rabbitmq": {
+    "queue": "test.queue",
+    "processor.address": "processit.incoming",
+    "hostname": "localhost",
+    "port": 5672
+  }
+}

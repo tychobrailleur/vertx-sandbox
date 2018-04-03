@@ -1,64 +1,33 @@
 #+AUTHOR: Sébastien Le Callonnec
 #+TITLE: README
 
-Experimenting with worker verticles in Vert.x 2.1.5.
+Experimenting with Vert.x 3.5.1.
 
-* Starting server
+* Vert.x
 
-Compile the code using Maven:
+  Using [[https://vertx.io/docs/vertx-core/groovy/][Groovy Vert.x 3.5.1]].
 
-#+BEGIN_SRC
-mvn package
-#+END_SRC
+* RabbitMQ
 
-Once it's packaged, go into the =target/classes= folder, and run the
-following command (making sure Vert.x 2.1.4 is on the =PATH=):
+  To create a queue:
 
 #+BEGIN_SRC bash
-vertx run MainVerticle -cluster
+rabbitmqadmin declare queue name=test.queue durable=true
 #+END_SRC
 
-** Change the worker thread pool size
+  See also https://www.rabbitmq.com/management-cli.html
 
-#+BEGIN_SRC bash
-export JAVA_OPTS="-Dvertx.pool.worker.size=2 $JAVA_OPTS"
-#+END_SRC
+  Access web admin interface:
+  http://localhost:15672/
 
-** Activate JMX
+  In this example, we create a direct exchange called
+  =processit.incoming=, and a queue =test.queue= that the
+  =MainVerticle= connects to.
 
-This is an undocumented feature in Vert.x 2.x:
 
-#+BEGIN_SRC bash
-export JAVA_OPTS="-Dvertx.management.jmx=true $JAVA_OPTS"
-#+END_SRC
+** Resources
 
-This exposes:
-
-- Details about the thread pool (size, active threads),
-- Host and port of the event bus.
-
-* Sending Message
-
-Making sure Vert.x 2.1.4 is on the =PATH=, the client can be executed
-as follow:
-
-#+BEGIN_SRC bash
-vertx run send_message.rb -cluster
-#+END_SRC
-
-* Worker Verticle Behaviour
-
-By default, an instance of a worker won't process any further worker
-until that instance has completed its work in the thread pool.  When a
-message comes in, an available worker instance is taken from the group
-of instances.
-
-This means there cannot be more than _n_ worker instances running in
-parallel, _n_ being the =vertx.pool.worker.size=.
-
-To ensure a worker can process multiple requests in parallel (i.e. by
-more than one thread at a time in the background pool), it has to be
-deployed with the =multi-threaded= flag set to =true=.
+   - https://www.rabbitmq.com/tutorials/amqp-concepts.html
 
 * License
 
