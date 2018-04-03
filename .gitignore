@@ -16,3 +16,6 @@ dependency-reduced-pom.xml
 
 .DS_Store*
 Thumbs.db
+/nb-configuration.xml
+/nbactions.xml
+.vertx/
