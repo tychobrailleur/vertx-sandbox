@@ -16,5 +16,5 @@ data =<<DATA
 }
 DATA
 
-x.publish(data, routing_key: '')
+10.times { x.publish(data, routing_key: '') }
 conn.close

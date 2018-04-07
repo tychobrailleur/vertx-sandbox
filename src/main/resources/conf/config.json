@@ -4,5 +4,10 @@
     "processor.address": "processit.incoming",
     "hostname": "localhost",
     "port": 5672
-  }
+  },
+  "url":"jdbc:postgresql://localhost/processit",
+  "user": "processit",
+  "password": "processit",
+  "driver_class":"org.postgresql.Driver",
+  "max_pool_size":30
 }
