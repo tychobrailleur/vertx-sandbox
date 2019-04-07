@@ -1,0 +1,65 @@
+{
+  "rabbit_version": "3.7.14",
+  "users": [
+    {
+      "name": "guest",
+      "password": "guest",
+      "tags": "administrator"
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "/"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "guest",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "parameters": [],
+  "policies": [],
+  "queues": [
+    {
+      "name": "processor.incoming",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-ha-policy": "all"
+      }
+    },
+    {
+      "name": "test.queue",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-ha-policy": "all"
+      }
+    },
+  ],
+  "exchanges": [],
+  "bindings": [
+    {
+      "source": "amq.direct",
+      "vhost": "/",
+      "destination": "processor.incoming",
+      "destination_type": "queue",
+      "routing_key": "",
+      "arguments": {}
+    },
+    {
+      "source": "amq.direct",
+      "vhost": "/",
+      "destination": "test.queue",
+      "destination_type": "queue",
+      "routing_key": "",
+      "arguments": {}
+    }
+  ]
+}

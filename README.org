@@ -1,11 +1,11 @@
 #+AUTHOR: Sébastien Le Callonnec
 #+TITLE: README
 
-Experimenting with Vert.x 3.5.1.
+Experimenting with Vert.x 3.7.0.
 
 * Vert.x
 
-  Using [[https://vertx.io/docs/vertx-core/groovy/][Groovy Vert.x 3.5.1]].
+  Using [[https://vertx.io/docs/vertx-core/groovy/][Groovy Vert.x 3.7.0]].
 
 * RabbitMQ
 
@@ -31,4 +31,4 @@ rabbitmqadmin declare queue name=test.queue durable=true
 
 * License
 
-(c) 2017 Sébastien Le Callonnec — licensed under GPLv3.
+(c) 2017–2019 Sébastien Le Callonnec — licensed under GPLv3.

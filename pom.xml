@@ -22,48 +22,38 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-core</artifactId>
-      <version>3.5.1</version>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-lang-groovy</artifactId>
-      <version>3.5.1</version>
+      <version>3.7.0</version>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-web-client</artifactId>
-      <version>3.5.1</version>
+      <version>3.7.0</version>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-rabbitmq-client</artifactId>
-      <version>3.5.1</version>
-    </dependency>
-    <dependency>
-      <groupId>io.vertx</groupId>
-      <artifactId>vertx-rx-java2</artifactId>
-      <version>3.5.1</version>
+      <version>3.7.0</version>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-config</artifactId>
-      <version>3.5.1</version>
+      <version>3.7.0</version>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-jdbc-client</artifactId>
-      <version>3.5.1</version>
+      <version>3.7.0</version>
     </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-mysql-postgresql-client</artifactId>
-      <version>3.5.1</version>
+      <version>3.7.0</version>
     </dependency>
-<dependency>
-  <groupId>io.vertx</groupId>
-  <artifactId>vertx-sql-common</artifactId>
-  <version>3.5.1</version>
-</dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-sql-common</artifactId>
+      <version>3.7.0</version>
+    </dependency>
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
@@ -95,25 +85,28 @@
       <version>2.9.9</version>
     </dependency>
     <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-core</artifactId>
-      <version>1.2.3</version>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.25</version>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
       <version>1.2.3</version>
     </dependency>
-    <dependency>
-      <groupId>org.codehaus.groovy</groupId>
-      <artifactId>groovy-all</artifactId>
-      <version>2.4.12</version>
-    </dependency>
   </dependencies>
 
   <build>
     <finalName>vertx-sandbox</finalName>
     <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
       <plugin>
         <artifactId>maven-eclipse-plugin</artifactId>
         <version>2.10</version>
@@ -123,35 +116,8 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.codehaus.groovy</groupId>
-        <artifactId>groovy-eclipse-compiler</artifactId>
-        <version>2.9.2-01</version>
-        <extensions>true</extensions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.7.0</version>
-        <configuration>
-          <compilerId>groovy-eclipse-compiler</compilerId>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-eclipse-compiler</artifactId>
-            <version>2.9.2-01</version>
-          </dependency>
-          <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-eclipse-batch</artifactId>
-            <version>2.4.3-01</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-      <plugin>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>3.0.0-M1</version>
+        <version>3.0.0-M2</version>
         <executions>
           <execution>
             <id>enforce-maven</id>
@@ -170,7 +136,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>3.1.0</version>
+        <version>3.2.1</version>
         <configuration>
           <transformers>
             <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
@@ -187,6 +153,27 @@
           </execution>
         </executions>
       </plugin>
+      <!-- <plugin> -->
+      <!--   <groupId>com.spotify</groupId> -->
+      <!--   <artifactId>dockerfile-maven-plugin</artifactId> -->
+      <!--   <version>1.4.10</version> -->
+      <!--   <executions> -->
+      <!--     <execution> -->
+      <!--       <id>default</id> -->
+      <!--       <goals> -->
+      <!--         <goal>build</goal> -->
+      <!--         <goal>push</goal> -->
+      <!--       </goals> -->
+      <!--     </execution> -->
+      <!--   </executions> -->
+      <!--   <configuration> -->
+      <!--     <repository>weblogism/processir</repository> -->
+      <!--     <tag>${project.version}</tag> -->
+      <!--     <buildArgs> -->
+      <!--       <JAR_FILE>${project.build.finalName}.jar</JAR_FILE> -->
+      <!--     </buildArgs> -->
+      <!--   </configuration> -->
+      <!-- </plugin> -->
     </plugins>
   </build>
 </project>

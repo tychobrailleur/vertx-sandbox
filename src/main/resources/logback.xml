@@ -1,0 +1,32 @@
+<configuration debug="false">
+
+  <property name="LOG_DIR" value="/var/log/processit" />
+
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_DIR}/processor.log</file>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <fileNamePattern>mylog-%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
+      <maxFileSize>100MB</maxFileSize>    
+      <maxHistory>60</maxHistory>
+      <totalSizeCap>20GB</totalSizeCap>
+    </rollingPolicy>
+  </appender>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="com.weblogism.processit" level="debug" additivity="false">
+    <appender-ref ref="FILE" />
+  </logger>
+
+  <root level="info">
+    <appender-ref ref="FILE" />
+  </root>
+</configuration>

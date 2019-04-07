@@ -1,17 +1,8 @@
-FROM tychobrailleur/java8
+FROM openjdk:8-jdk-slim
 
-RUN apt-get install postgresql
+COPY bin/run.sh /run.sh
+RUN apt-get update && apt-get install -y netcat && chmod +x /run.sh
 
-# Create specific user
-RUN useradd --create-home --shell /bin/bash processit && adduser processit sudo
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+ADD target/vertx-sandbox.jar vertx-sandbox.jar
 
-RUN mkdir -p /var/data/processit && chown -R processit:processit /var/data/processit
-
-
-USER processit
-WORKDIR /home/processit
-
-COPY --chown=processit ./target/vertx-sandbox.jar /home/processit
-
-CMD nohup java -jar vertx-sandbox.jar & bash
+CMD ["/run.sh"]

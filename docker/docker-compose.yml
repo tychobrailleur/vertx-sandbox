@@ -1,0 +1,26 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:10.7
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: processit
+      POSTGRES_USER: processit
+    volumes:
+      - ./db/00-create.sql:/docker-entrypoint-initdb.d/00-create.sql
+
+  rabbitmq:
+    build: ./rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  vertx-sandbox:
+    image: vertx-sandbox:latest
+    restart: on-failure
+    depends_on:
+      - postgres
+      - rabbitmq
+    volumes:
+      - /var/log/processit:/var/log/processit
