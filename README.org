@@ -5,7 +5,7 @@ Experimenting with Vert.x 3.7.0.
 
 * Vert.x
 
-  Using [[https://vertx.io/docs/vertx-core/groovy/][Groovy Vert.x 3.7.0]].
+  Using [[https://vertx.io/docs/vertx-core/java/][Vert.x 3.7.0].
 
 * RabbitMQ
 

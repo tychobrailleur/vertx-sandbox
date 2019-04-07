@@ -14,9 +14,9 @@ import io.vertx.ext.sql.SQLConnection;
 import java.util.Base64;
 import java.util.Date;
 
-public class ProcessMessageVerticle extends AbstractVerticle {
+public class EventStorageVerticle extends AbstractVerticle {
 
-    private Logger log = LoggerFactory.getLogger(ProcessMessageVerticle.class);
+    private Logger log = LoggerFactory.getLogger(EventStorageVerticle.class);
 
     @Override
     public void start(Future<Void> startFuture) {
@@ -25,13 +25,12 @@ public class ProcessMessageVerticle extends AbstractVerticle {
         final EventBus eventBus = getVertx().eventBus();
         AsyncSQLClient client = PostgreSQLClient.createShared(getVertx(), config);
 
-        eventBus.consumer("processit.incoming", message -> {
+        eventBus.<String>consumer("processit.incoming", message -> {
             log.debug("Received Message on 'processing.incoming': " + message.body());
-            Object body = message.body();
-            String decoded = new String(Base64.getDecoder().decode((String) body));
-            log.debug("Received message: " + decoded);
+            String body = message.body();
+            log.debug("Received message: " + body);
 
-            saveEvent(client, decoded);
+            saveEvent(client, body);
         });
 
         startFuture.complete();
@@ -49,8 +48,7 @@ public class ProcessMessageVerticle extends AbstractVerticle {
 
                 connection.updateWithParams(query, params, updateResultAsyncResult -> {
                     if (updateResultAsyncResult.succeeded()) {
-                        log.info("Successfully inserted");
-                        Object rs = updateResultAsyncResult.result();
+                        log.debug("Successfully inserted");
                     } else {
                         log.error("Error inserting event.", updateResultAsyncResult.cause());
                     }

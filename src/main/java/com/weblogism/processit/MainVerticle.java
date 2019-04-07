@@ -11,6 +11,8 @@ import io.vertx.rabbitmq.RabbitMQClient;
 import io.vertx.rabbitmq.RabbitMQConsumer;
 import io.vertx.rabbitmq.RabbitMQOptions;
 
+import java.util.Base64;
+
 
 public class MainVerticle extends AbstractVerticle {
 
@@ -73,7 +75,8 @@ public class MainVerticle extends AbstractVerticle {
                         if (log.isDebugEnabled()) {
                             log.debug("Received rabbit message: " + rabbitMQMessage.body().toString());
                         }
-                        eventBus.send("processit.incoming", rabbitMQMessage.body().toString());
+                        eventBus.publish("processit.incoming",
+                            new String(Base64.getDecoder().decode(rabbitMQMessage.body().toString())));
                     });
                 } else {
                     log.error("Error creating RabbitMQ consumer.", rabbitMQConsumerAsyncResult.cause());

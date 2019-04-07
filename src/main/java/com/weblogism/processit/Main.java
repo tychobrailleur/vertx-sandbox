@@ -32,8 +32,9 @@ public class Main {
             if (json.succeeded()) {
                 JsonObject config = json.result();
                 log.debug("Starting the app with config: " + json);
-                vertx.deployVerticle("com.weblogism.processit.MainVerticle", new DeploymentOptions().setConfig(config));
-                vertx.deployVerticle("com.weblogism.processit.ProcessMessageVerticle", new DeploymentOptions().setConfig(config));
+                vertx.deployVerticle(MainVerticle.class.getName(), new DeploymentOptions().setConfig(config));
+                vertx.deployVerticle(EventStorageVerticle.class.getName(), new DeploymentOptions().setConfig(config));
+                vertx.deployVerticle(StateManagerVerticle.class.getName(), new DeploymentOptions().setConfig(config));
             } else {
                 log.error("Error retrieving configuration.");
             }
